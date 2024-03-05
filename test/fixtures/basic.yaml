@@ -1,0 +1,20 @@
+paths:
+  /:
+    get:
+      response:
+        status_code: 200
+        body: "hello,world"
+  /users:
+    post:
+      response:
+        status_code: 204
+    get:
+      response:
+        status_code: 200
+        body: '<%= File.read('test/fixtures/users.json') %>'
+  /users/dummy.json:
+    get:
+      response:
+        status_code: 200
+        body: <%= {name: 'dummy'}.to_json %>
+        content_type: 'application/json'
