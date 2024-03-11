@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Yuji Yaginuma"]
   spec.email = ["yuuji.yaginuma@gmail.com"]
 
-  spec.summary = "Write a longer description or delete this line."
+  spec.summary = "Mock server for APIs"
   spec.homepage = "https://github.com/y-yagi/dummy_oscar"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
@@ -28,5 +28,4 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "puma"
-  spec.add_dependency "roda"
 end
