@@ -23,6 +23,8 @@ class DummyOscar::App
   end
 
   def app(env)
+    $stdout.puts "Started #{env["REQUEST_METHOD"]} #{env["PATH_INFO"]}"
+
     route = @routing.dig(env["PATH_INFO"], env["REQUEST_METHOD"].downcase)
     if route
       headers = {}
