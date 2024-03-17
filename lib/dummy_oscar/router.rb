@@ -13,7 +13,7 @@ class DummyOscar::Router
 
   def find(path:, method:)
     @routes.detect do |route|
-      route.path == path && route.method == method.downcase
+      /\A(?:#{route.path})\z/.match?(path) && route.method == method.downcase
     end
   end
 end

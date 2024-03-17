@@ -34,5 +34,9 @@ class IntegrationTest < Minitest::Test
     res = Net::HTTP.start(@host, @port) {|http| http.get("/users") }
     assert_instance_of Net::HTTPOK, res
     assert_equal JSON.parse(File.read("test/fixtures/users.json")), JSON.parse(res.body)
+
+    res = Net::HTTP.start(@host, @port) {|http| http.get("/users/1/books") }
+    assert_instance_of Net::HTTPOK, res
+    assert_equal "messages", res.body
   end
 end

@@ -18,3 +18,8 @@ paths:
         status_code: 200
         body: <%= {name: 'dummy'}.to_json %>
         content_type: 'application/json'
+  /users/.+/books:
+    get:
+      response:
+        status_code: 200
+        body: 'messages'
