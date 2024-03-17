@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class DummyOscar::Router
-  Route = Struct.new(:path, :method, :response, keyword_init: nil)
+  Route = Struct.new(:path, :method, :response)
 
   def initialize
     @routes = []
   end
 
   def add(path:, method:, response:)
-    @routes << Route.new(path: path, method: method.downcase, response: response)
+    @routes << Route.new(path, method.downcase, response)
   end
 
   def find(path:, method:)
