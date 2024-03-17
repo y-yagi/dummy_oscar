@@ -8,7 +8,7 @@ class IntegrationTest < Minitest::Test
 
 
   def before_all
-    @pid = Process.spawn("./exe/dummy_oscar", "-C", "test/fixtures/basic.yaml")
+    @pid = Process.spawn("./exe/dummy_oscar", "-C", "test/fixtures/basic.yaml", "-r", "./test/fixtures/library_for_config.rb")
     @host = "localhost"
     @port = "8282"
     sleep 2
@@ -55,5 +55,11 @@ class IntegrationTest < Minitest::Test
     assert_instance_of Net::HTTPOK, res
 
     assert_equal [{"title"=>"Abc"}, {"title"=>"deF"}], JSON.parse(res.body)
+  end
+
+  def test_require_library
+    res = Net::HTTP.start(@host, @port) {|http| http.get("/home") }
+    assert_instance_of Net::HTTPOK, res
+    assert_equal "This is a home page!", res.body
   end
 end

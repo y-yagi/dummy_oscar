@@ -6,7 +6,7 @@ class DummyOscar::Cli
   class << self
     def start
       options = parse
-      server = DummyOscar::Server.new(config_file: options[:config], port: options[:port])
+      server = DummyOscar::Server.new(config_file: options[:config], port: options[:port], library: options[:library])
       server.start
     end
 
@@ -21,9 +21,14 @@ class DummyOscar::Cli
         opts.on("-C", "--config PATH", "Config file path") do |v|
           options[:config] = v
         end
+
+        opts.on("-r", "--require PATH", "require the library before parse a config file") do |v|
+          options[:library] = v
+        end
       end.parse!(argv)
 
       raise OptionParser::MissingArgument.new("-C") if options[:config].nil?
+
       options
     end
   end

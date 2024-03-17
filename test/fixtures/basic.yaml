@@ -24,3 +24,8 @@ paths:
         status_code: 200
         body: '[{"title":"Abc"},{"title":"deF"}]'
         content_type: 'application/json'
+  /home:
+    get:
+      response:
+        status_code: 200
+        body: <%= home %>

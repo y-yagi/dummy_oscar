@@ -12,14 +12,14 @@ class DummyOscar::App
   private_class_method :new
 
   class << self
-    def build(config_file)
-      new(config_file)
+    def build(config_file, library:)
+      new(config_file, library: library)
     end
   end
 
-  def initialize(config_file)
+  def initialize(config_file, library:)
     @router = DummyOscar::Router.new
-    parse_config_file(config_file)
+    parse_config_file(config_file, library: library)
   end
 
   def app(env)
@@ -37,7 +37,9 @@ class DummyOscar::App
 
   private
 
-  def parse_config_file(config_file)
+  def parse_config_file(config_file, library:)
+    require(library) if library
+
     source = ERB.new(File.read(config_file)).result(binding)
     config = YAML.load(source)
     config["paths"].each do |path, list|

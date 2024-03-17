@@ -6,9 +6,9 @@ require "puma/launcher"
 class DummyOscar::Server
   DEFAULT_PORT = 8282
 
-  def initialize(config_file:, port: nil)
+  def initialize(config_file:, port: nil, library: nil)
     @port = port || DEFAULT_PORT
-    @app_builder = DummyOscar::App.build(config_file)
+    @app_builder = DummyOscar::App.build(config_file, library: library)
   end
 
   def start
