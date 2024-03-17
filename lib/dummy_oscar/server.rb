@@ -20,7 +20,4 @@ class DummyOscar::Server
     $stdout.puts("Listening on http://localhost:#{@port}")
     Puma::Launcher.new(conf, log_writer: Puma::LogWriter.null).run
   end
-
-  def terminate
-  end
 end
