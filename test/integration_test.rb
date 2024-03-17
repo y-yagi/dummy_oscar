@@ -48,6 +48,7 @@ class IntegrationTest < Minitest::Test
   def test_regex_path
     res = Net::HTTP.start(@host, @port) {|http| http.get("/users/1/books") }
     assert_instance_of Net::HTTPOK, res
-    assert_equal "messages", res.body
+
+    assert_equal [{"title"=>"Abc"}, {"title"=>"deF"}], JSON.parse(res.body)
   end
 end

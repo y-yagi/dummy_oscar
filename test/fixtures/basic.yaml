@@ -22,4 +22,5 @@ paths:
     get:
       response:
         status_code: 200
-        body: 'messages'
+        body: '[{"title":"Abc"},{"title":"deF"}]'
+        content_type: 'application/json'
