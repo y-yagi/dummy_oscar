@@ -18,18 +18,18 @@ class DummyOscar::App
   end
 
   def initialize(config_file)
-    @routing = {}
+    @router = DummyOscar::Router.new
     parse_config_file(config_file)
   end
 
   def app(env)
     $stdout.puts "Started #{env["REQUEST_METHOD"]} #{env["PATH_INFO"]}"
 
-    route = @routing.dig(env["PATH_INFO"], env["REQUEST_METHOD"].downcase)
+    route = @router.find(path: env["PATH_INFO"], method: env["REQUEST_METHOD"])
     if route
       headers = {}
-      headers["Content-Type"] = route["content_type"] if route["content_type"]
-      return [route["status_code"], headers, [route["body"].to_s]]
+      headers["Content-Type"] = route.response["content_type"] if route.response["content_type"]
+      return [route.response["status_code"], headers, [route.response["body"].to_s]]
     end
 
     [404, {}, ["Not found"]]
@@ -41,10 +41,9 @@ class DummyOscar::App
     source = ERB.new(File.read(config_file)).result(binding)
     config = YAML.load(source)
     config["paths"].each do |path, list|
-      @routing[path] = {}
       list.each do |method, response|
         raise DummyOscar::ParseConfigError, "You need to specify `:response` in the config file." if response["response"].nil?
-        @routing[path][method.downcase] = response["response"]
+        @router.add(path: path, method: method, response: response["response"])
       end
     end
   end
