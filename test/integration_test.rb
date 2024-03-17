@@ -31,6 +31,11 @@ class IntegrationTest < Minitest::Test
     res = Net::HTTP.start(@host, @port) {|http| http.get("/not_found") }
     assert_instance_of Net::HTTPNotFound, res
     assert_equal "Not found", res.body
+
+    headers = {'Content-type' => 'application/json; charset=UTF-8'}
+    res = Net::HTTP.start(@host, @port) {|http| http.post("/", "", headers) }
+    assert_instance_of Net::HTTPNotFound, res
+    assert_equal "Not found", res.body
   end
 
   def test_post
