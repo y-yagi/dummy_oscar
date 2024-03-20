@@ -3,7 +3,7 @@
 require "test_helper"
 require "net/http"
 
-class IntegrationTest < Minitest::Test
+class ServerIntegrationTest < Minitest::Test
   include Minitest::Hooks
 
 

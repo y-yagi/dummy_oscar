@@ -3,11 +3,11 @@
 require "test_helper"
 
 class CliTest < Minitest::Test
-  def test_parse_without_argv
+  def test_parse_server_without_argv
     assert_raises(OptionParser::MissingArgument) { DummyOscar::Cli.new(["s"]).parse }
   end
 
-  def test_parse_with_argv
+  def test_parse_server_with_argv
     cli = DummyOscar::Cli.new(["s", "-C", "test/fixtures/basic.yml", "-p", "3000", "-r", "library.rb"])
     options = cli.parse
     assert_equal options[:config], "test/fixtures/basic.yml"
