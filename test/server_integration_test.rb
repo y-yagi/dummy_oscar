@@ -8,7 +8,7 @@ class ServerIntegrationTest < Minitest::Test
 
 
   def before_all
-    @pid = Process.spawn("./exe/dummy_oscar", "s", "-C", "test/fixtures/basic.yaml", "-r", "./test/fixtures/library_for_config.rb")
+    @pid = Process.spawn("./exe/dummy_oscar", "s", "-C", "test/fixtures/server_basic.yaml", "-r", "./test/fixtures/library_for_config.rb")
     @host = "localhost"
     @port = "8282"
     sleep 2
