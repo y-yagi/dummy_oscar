@@ -1,0 +1,8 @@
+requests:
+  hello:
+    path: "/"
+    method: "get"
+  create_user:
+    path: "/users"
+    method: "post"
+    body: <%= {name: 'dummy'}.to_json %>
