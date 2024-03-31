@@ -23,7 +23,8 @@ class DummyOscar::App
   end
 
   def app(env)
-    $stdout.puts "Started #{env["REQUEST_METHOD"]} #{env["PATH_INFO"]}"
+    input = "'#{env['rack.input'].read}'"
+    $stdout.puts "Started #{env["REQUEST_METHOD"]} #{env["PATH_INFO"]} #{input}"
 
     route = @router.find(path: env["PATH_INFO"], method: env["REQUEST_METHOD"])
     if route
