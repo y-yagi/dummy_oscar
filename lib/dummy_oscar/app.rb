@@ -2,7 +2,6 @@
 
 require "yaml"
 require "erb"
-require "debug"
 
 # NOTE: These requires are for using some methods in a config file.
 require "securerandom"
