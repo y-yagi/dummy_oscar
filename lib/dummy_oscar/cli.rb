@@ -56,6 +56,8 @@ class DummyOscar::Cli
   def subcommands
     {
       's' => OptionParser.new do |opts|
+        opts.banner = "Usage: dummy_oscar s [options]"
+
         opts.on("-p", "--port NUMBER", "Port number", Integer) do |v|
           @options[:port] = v.to_i
         end
@@ -69,6 +71,8 @@ class DummyOscar::Cli
         end
       end,
       'c' => OptionParser.new do |opts|
+        opts.banner = "Usage: dummy_oscar c [options]"
+
         opts.on("-C", "--config PATH", "Config file path") do |v|
           @options[:config] = v
         end
