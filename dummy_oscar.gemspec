@@ -8,15 +8,13 @@ Gem::Specification.new do |spec|
   spec.authors = ["Yuji Yaginuma"]
   spec.email = ["yuuji.yaginuma@gmail.com"]
 
-  spec.summary = "Mock server for APIs"
+  spec.summary = "The tool for creating a dummy HTTP server and client."
   spec.homepage = "https://github.com/y-yagi/dummy_oscar"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |f|
       (File.expand_path(f) == __FILE__) ||
