@@ -4,7 +4,6 @@ require "yaml"
 require "erb"
 
 # NOTE: These requires are for using some methods in a config file.
-require "securerandom"
 require "json"
 
 class DummyOscar::App
